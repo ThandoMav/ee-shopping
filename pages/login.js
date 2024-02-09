@@ -41,14 +41,16 @@ export default function LoginScreen() {
   return (
     <Layout title="Login">
       <form
+      	autoComplete="on"
         className="mx-auto max-w-screen-md"
         onSubmit={handleSubmit(submitHandler)}
       >
         <h1 className="mb-4 text-xl">Login</h1>
         <div className="mb-4">
-          <label htmlFor="email">Email</label>
+          <label htmlFor="emailLogin" id="loginEmail">Email</label>
           <input
             type="email"
+            id="emailLogin"
             {...register('email', {
               required: 'Please enter email',
               pattern: {
@@ -56,25 +58,25 @@ export default function LoginScreen() {
                 message: 'Please enter valid email',
               },
             })}
-            className="w-full rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b block pl-4 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none"
-
-            id="email"
+            className="w-full"
             autoFocus
+            autoComplete="on"
           ></input>
           {errors.email && (
             <div className="text-red-500">{errors.email.message}</div>
           )}
         </div>
         <div className="mb-4">
-          <label htmlFor="password">Password</label>
+          <label htmlFor="passwordLogin" id="loginPass">Password</label>
           <input
             type="password"
+            id="passwordLogin"
             {...register('password', {
               required: 'Please enter password',
               minLength: { value: 6, message: 'password is more than 5 chars' },
             })}
-            className="w-full rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b block pl-4 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none"
-            id="password"
+            className="w-full"
+            autoComplete="on"
             autoFocus
           ></input>
           {errors.password && (
@@ -82,14 +84,11 @@ export default function LoginScreen() {
           )}
         </div>
         <div className="mb-4 ">
-          <button className="primary-button">Login</button>
+          <button className="primary-button" id="login">Login</button>
         </div>
         <div className="mb-4 ">
           Don&apos;t have an account? &nbsp;
           <Link href={`/register?redirect=${redirect || '/'}`}>Register</Link>
-          <Link href={`/login?redirect=${redirect || '/'}`}>Login</Link>
-          <br />
-          <Link href={`/forgot-password?redirect=${redirect || '/'}`}>Forgot Password</Link>
         </div>
       </form>
     </Layout>
